@@ -59,7 +59,7 @@ MODEL_REGISTRY = {
         "size_mb": 900
     },
     "flan-t5-large": {
-        "repo": "Xenova/flan-t5-large",
+        "repo": "dmmagdal/flan-t5-large-onnx",
         "description": "FLAN-T5 Large (770M params) - encoder-decoder for summarization/QA",
         "architecture": "t5",
         "size_mb": 3000
@@ -71,8 +71,8 @@ MODEL_REGISTRY = {
         "size_mb": 1200
     },
     "qwen3": {
-        "repo": "onnx-community/Qwen2.5-1.5B-Instruct-ONNX",
-        "description": "Qwen 2.5 1.5B Instruct - decoder-only chat model",
+        "repo": "onnx-community/Qwen3-1.7B-ONNX",
+        "description": "Qwen 3 1.7B Instruct - decoder-only chat model",
         "architecture": "qwen",
         "size_mb": 6000
     },
