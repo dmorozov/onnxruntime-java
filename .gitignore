@@ -1,0 +1,47 @@
+# Java compiled files
+target/
+*.class
+*.jar
+*.war
+*.ear
+
+# Build tools
+.gradle/
+build/
+bin/
+out/
+
+# IDEs
+.idea/
+*.iml
+*.iws
+*.ipr
+.vscode/
+*.swp
+*.swo
+*~
+
+# Logs
+*.log
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# OS files
+.DS_Store
+Thumbs.db
+*.tmp
+
+# Maven
+.mvn/wrapper/maven-wrapper.jar
+
+# Model files (too large for git)
+models/*ONNX*
+models/.venv*
+
+onnx_profile_*.json
+
+__pycache__/
+.cache/

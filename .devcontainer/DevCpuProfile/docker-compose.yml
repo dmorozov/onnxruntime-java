@@ -1,0 +1,31 @@
+version: "3.8"
+
+services:
+  onnx-java-lib:
+    container_name: onnx-java-lib
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        INSTALL_MAVEN: "true"
+        MAVEN_VERSION: "3.9.6"
+        NODE_VERSION: "20.17.0"
+
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+    volumes:
+      - ..:/workspaces:cached
+      - ~/.ssh:/home/vscode/.ssh
+      - ~/.m2:/home/vscode/.m2
+
+    # Overrides default command so things don't shut down after the process ends.
+    command: sleep infinity
+
+    # deploy:
+    #   resources:
+    #     reservations:
+    #       devices:
+    #         - driver: nvidia
+    #           count: all
+    #           capabilities: [gpu]
