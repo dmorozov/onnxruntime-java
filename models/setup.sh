@@ -65,7 +65,8 @@ pip install --upgrade pip > /dev/null 2>&1
 # Check if dependencies are already installed
 if python -c "import optimum" 2>/dev/null && \
    python -c "import transformers" 2>/dev/null && \
-   python -c "import torch" 2>/dev/null; then
+   python -c "import torch" 2>/dev/null && \
+   python -c "import huggingface_hub" 2>/dev/null; then
     echo -e "${GREEN}✓ Dependencies already installed${NC}"
 else
     echo -e "${YELLOW}→ Installing dependencies (this may take a few minutes)...${NC}"
@@ -81,6 +82,9 @@ else
 
     # Install ONNX tools
     pip install onnx onnxruntime
+
+    # Install HuggingFace Hub for model downloads
+    pip install huggingface_hub
 
     pip install --upgrade optimum[onnxruntime]
 

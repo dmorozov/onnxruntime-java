@@ -39,6 +39,7 @@ Thumbs.db
 
 # Model files (too large for git)
 models/*ONNX*
+models/*-HF
 models/.venv*
 
 onnx_profile_*.json

@@ -22,6 +22,31 @@ mvn clean install -P cpu
 mvn clean install -P \!gpu
 ```
 
+### Model Download
+```bash
+# List available models
+cd models && ./download.sh --list
+
+# Download a model with all variants
+./download.sh --model flan-t5-small
+
+# Download specific variants only
+./download.sh --model flan-t5-small --variants int8,q4
+
+# Download using HuggingFace repo ID directly
+./download.sh --model Xenova/flan-t5-base --variants full,int8
+
+# Setup Python environment (if needed)
+source ./setup.sh
+```
+
+The download script automatically:
+- Resolves model names from a registry or accepts HuggingFace repo IDs
+- Downloads ONNX model files for requested quantization variants
+- Downloads all necessary config files (tokenizer, generation config, etc.)
+- Skips files that already exist (resume support)
+- Creates organized directory structure: `models/<model-name>-HF/`
+
 ### Testing
 ```bash
 # Run unit tests only (excludes integration tests by default)
@@ -191,6 +216,27 @@ From `docs/Optimizations.md` and `docs/ONNX Runtime Java I_O Bindings.md`:
   - Target: TTFT < 50ms, token intervals < 100ms
 
 ## Key Files & Locations
+
+### Model Download Scripts
+- `models/download_model.py`: Main download script using HuggingFace Hub API
+- `models/download.sh`: Bash wrapper that ensures Python venv is activated
+- `models/setup.sh`: Sets up Python virtual environment with dependencies
+- `models/.venv_optimum/`: Python virtual environment (auto-created)
+
+**Model Registry**: Edit `MODEL_REGISTRY` in `download_model.py` to add new models:
+```python
+"model-alias": {
+    "repo": "huggingface-org/model-name",
+    "description": "Model description",
+    "architecture": "t5|bart|llama|phi|qwen",
+    "size_mb": 1000
+}
+```
+
+The script automatically detects ONNX files and config files based on standard patterns:
+- ONNX files: `encoder_model*.onnx`, `decoder_model*.onnx`, `model*.onnx`
+- Variants: `*_int8.onnx`, `*_int4.onnx`, `*_fp16.onnx`, base files (full/fp32)
+- Config: `config.json`, `tokenizer*.json`, `generation_config.json`, etc.
 
 ### FFM Implementation (Target for Development)
 - Native C API wrappers would go in `src/main/java/com/badu/ai/onnx/ffm/`
