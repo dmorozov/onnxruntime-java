@@ -6,6 +6,8 @@ The ranking is based on the multiplicative nature of gains: combining data compr
 
 ### Pre-Run Optimizations (Offline/AOT: Hugging Faces Optimum Library, Quantization Tools)
 
+https://huggingface.co/docs/optimum-onnx/en/onnxruntime/usage_guides/optimization
+
 These optimizations are typically performed **Ahead-of-Time (AOT)** before the model is deployed to production, using external tools (like Optimum, Python scripts, or Olive). This process creates a specialized ONNX artifact.
 
 | Optimization Methodic | Affects (Execution Provider) | Expected Speed Up | Expected Memory Benefits | Description | References |

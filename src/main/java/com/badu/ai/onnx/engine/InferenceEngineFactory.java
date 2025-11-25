@@ -144,11 +144,11 @@ public class InferenceEngineFactory {
     }
 
     private static InferenceEngine createEncoderDecoderEngine() {
-        throw new IllegalArgumentException("T5EncoderDecoderEngine is not implemented");
+        return new EncoderDecoderEngine();
     }
 
     private static InferenceEngine createDecoderOnlyEngine() {
-        throw new IllegalArgumentException("DecoderOnlyEngine is not implemented");
+        return new DecoderOnlyEngine();
     }
 
     /**
